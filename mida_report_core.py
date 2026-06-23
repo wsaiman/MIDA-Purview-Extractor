@@ -18,7 +18,7 @@ from reportlab.platypus import (
 )
 from reportlab.platypus.tableofcontents import TableOfContents
 
-# ── TOC ENTRY FLOWABLE ───────────────────────────────────────────────────────
+# â”€â”€ TOC ENTRY FLOWABLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 _toc_ref = [None]  # holds the active TableOfContents object
 
 class TocEntry(Flowable):
@@ -35,7 +35,7 @@ class TocEntry(Flowable):
         if _toc_ref[0] is not None:
             _toc_ref[0].notify('TOCEntry', (self.level, self.text, self.canv._pageNumber, key))
 
-# ── COLOURS ──────────────────────────────────────────────────────────────────
+# â”€â”€ COLOURS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 CB    = colors.HexColor('#003087')
 CLB   = colors.HexColor('#BDD7EE')
 CORA  = colors.HexColor('#F4B942')
@@ -49,7 +49,7 @@ LW  = landscape(A4)[0]
 MAR = 1.4 * cm
 TW  = LW - 2 * MAR
 
-# ── COLUMN NAMES ─────────────────────────────────────────────────────────────
+# â”€â”€ COLUMN NAMES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 CD    = 'Date Approved'
 CY    = 'Year of Approval'
 CST   = 'Status'
@@ -136,7 +136,7 @@ NEED = [
     CNAM, CPACT, CLOC,
 ] + [b[1] for b in SAL] + [b[2] for b in SAL] + [b[3] for b in SAL]
 
-# ── FORMATTERS ───────────────────────────────────────────────────────────────
+# â”€â”€ FORMATTERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 def fn(v, d=0):
     if v is None or (isinstance(v, float) and (np.isnan(v) or np.isinf(v))): return '-'
     return f"{v:,.{d}f}"
@@ -160,7 +160,7 @@ def yoy_str(c, p):
     v = (c - p) / abs(p) * 100
     return f"+{v:.1f}%" if v >= 0 else f"{v:.1f}%"
 
-# ── DATA LOADER ───────────────────────────────────────────────────────────────
+# â”€â”€ DATA LOADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 def load_excel(path):
     cache = path + '.cache9.pkl'
     mtime = os.path.getmtime(path)
@@ -174,7 +174,7 @@ def load_excel(path):
         except Exception:
             pass
 
-    print('  Reading Excel (first time — will cache for future runs)...')
+    print('  Reading Excel (first time â€” will cache for future runs)...')
     xl = pd.ExcelFile(path, engine='calamine')
     sheet = 'All' if 'All' in xl.sheet_names else xl.sheet_names[0]
     print(f'  Sheet: {sheet}')
@@ -273,7 +273,7 @@ def filt_qoq(df, year, months):
         prev = mfg[mfg['_y'] == year-1].copy()
     return prev_pl, prev
 
-# ── STYLES ────────────────────────────────────────────────────────────────────
+# â”€â”€ STYLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 SP    = ParagraphStyle
 STAT  = SP('stat',  fontSize=9,   textColor=CB,  fontName='Helvetica-Bold',  leading=12)
 TITLE = SP('title', fontSize=20,  textColor=CW,  fontName='Helvetica-Bold',  alignment=TA_CENTER, leading=28)
@@ -317,7 +317,7 @@ def sec_bar(text):
     ]))
     return t
 
-# ── TABLE BUILDER ─────────────────────────────────────────────────────────────
+# â”€â”€ TABLE BUILDER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 BASE_TS = [
     ('BACKGROUND',    (0,0), (-1,0),  CB),
     ('TEXTCOLOR',     (0,0), (-1,0),  CW),
@@ -381,7 +381,7 @@ def footer_fn(year, pl):
         canvas.restoreState()
     return f
 
-# ── SECTIONS ──────────────────────────────────────────────────────────────────
+# â”€â”€ SECTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 def sec_cover(story, year, pl):
     story.append(Spacer(1, 3.5*cm))
     c = Table([
@@ -421,8 +421,8 @@ def sec_toc(story, year, pl):
 
 def sec_yoy(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'1.  Year-on-Year Summary  —  {pl} {year} vs {year-1}'))
-    story.append(sec_bar(f'1.  YEAR-ON-YEAR SUMMARY  —  {pl}  ({year} vs {year-1})'))
+    story.append(TocEntry(0, f'1.  Year-on-Year Summary  â€”  {pl} {year} vs {year-1}'))
+    story.append(sec_bar(f'1.  YEAR-ON-YEAR SUMMARY  â€”  {pl}  ({year} vs {year-1})'))
     story.append(Spacer(1, 0.15*cm))
 
     ic = cur[CTRM].sum();  ip = prev[CTRM].sum()
@@ -448,30 +448,30 @@ def sec_yoy(story, cur, prev, year, pl):
     sections = [
         ('PROJECTS', [
             ['Total Projects Approved',        fn(len(cur)),              fn(len(prev)),             yoy_str(len(cur), len(prev))],
-            ['  – New (incl. Regularisation)', fn(nc),                    fn(np_),                   yoy_str(nc, np_)],
-            ['  – Diversification/Expansion',  fn(dvc),                   fn(dvp),                   yoy_str(dvc, dvp)],
+            ['  â€“ New (incl. Regularisation)', fn(nc),                    fn(np_),                   yoy_str(nc, np_)],
+            ['  â€“ Diversification/Expansion',  fn(dvc),                   fn(dvp),                   yoy_str(dvc, dvp)],
         ]),
         ('INVESTMENT', [
             ['Total Investment',               fmt_rm(ic),                fmt_rm(ip),                yoy_str(ic, ip)],
-            ['  – Domestic Investment',        f"{fmt_rm(dc)} ({fp(sd(dc,ic)*100)})",    f"{fmt_rm(dp)} ({fp(sd(dp,ip)*100)})",    yoy_str(dc,  dp)],
-            ['  – Foreign Investment',         f"{fmt_rm(fc2)} ({fp(sd(fc2,ic)*100)})", f"{fmt_rm(fp2)} ({fp(sd(fp2,ip)*100)})", yoy_str(fc2, fp2)],
+            ['  â€“ Domestic Investment',        f"{fmt_rm(dc)} ({fp(sd(dc,ic)*100)})",    f"{fmt_rm(dp)} ({fp(sd(dp,ip)*100)})",    yoy_str(dc,  dp)],
+            ['  â€“ Foreign Investment',         f"{fmt_rm(fc2)} ({fp(sd(fc2,ic)*100)})", f"{fmt_rm(fp2)} ({fp(sd(fp2,ip)*100)})", yoy_str(fc2, fp2)],
         ]),
         ('EMPLOYMENT', [
             ['Total\nEmployment',               fn(ec),                                              fn(ep),                                              yoy_str(ec, ep)],
-            ['  – Local Employment',           f"{fn(lc)} ({fp(sd(lc,ec)*100)})",                   f"{fn(lp)} ({fp(sd(lp,ep)*100)})",                   yoy_str(lc, lp)],
-            ['  – Foreign Employment',         f"{fn(fc)} ({fp(sd(fc,ec)*100)})",                   f"{fn(fp_)} ({fp(sd(fp_,ep)*100)})",                 yoy_str(fc, fp_)],
+            ['  â€“ Local Employment',           f"{fn(lc)} ({fp(sd(lc,ec)*100)})",                   f"{fn(lp)} ({fp(sd(lp,ep)*100)})",                   yoy_str(lc, lp)],
+            ['  â€“ Foreign Employment',         f"{fn(fc)} ({fp(sd(fc,ec)*100)})",                   f"{fn(fp_)} ({fp(sd(fp_,ep)*100)})",                 yoy_str(fc, fp_)],
             ['MTS Workers',                    fn(mtc),                   fn(mtp),                   yoy_str(mtc, mtp)],
             ['MTS Ratio',                      fp(sd(mtc,ec)*100),        fp(sd(mtp,ep)*100),        yoy_str(sd(mtc,ec), sd(mtp,ep))],
-            ['Workers ≥ RM5,000',             fn(s5c),                   fn(s5p),                   yoy_str(s5c, s5p)],
-            ['≥ RM5K Ratio',                  fp(sd(s5c,ec)*100),        fp(sd(s5p,ep)*100),        yoy_str(sd(s5c,ec), sd(s5p,ep))],
-            ['  – Local MTS Workers',          fn(mtlc),                  fn(mtlp),                  yoy_str(mtlc, mtlp)],
-            ['  – Local MTS Ratio',            fp(sd(mtlc,lc)*100),       fp(sd(mtlp,lp)*100),       yoy_str(sd(mtlc,lc), sd(mtlp,lp))],
-            ['  – Local Workers ≥ RM5,000',   fn(s5lc),                  fn(s5lp),                  yoy_str(s5lc, s5lp)],
-            ['  – Local ≥ RM5K Ratio',        fp(sd(s5lc,lc)*100),       fp(sd(s5lp,lp)*100),       yoy_str(sd(s5lc,lc), sd(s5lp,lp))],
+            ['Workers â‰¥ RM5,000',             fn(s5c),                   fn(s5p),                   yoy_str(s5c, s5p)],
+            ['â‰¥ RM5K Ratio',                  fp(sd(s5c,ec)*100),        fp(sd(s5p,ep)*100),        yoy_str(sd(s5c,ec), sd(s5p,ep))],
+            ['  â€“ Local MTS Workers',          fn(mtlc),                  fn(mtlp),                  yoy_str(mtlc, mtlp)],
+            ['  â€“ Local MTS Ratio',            fp(sd(mtlc,lc)*100),       fp(sd(mtlp,lp)*100),       yoy_str(sd(mtlc,lc), sd(mtlp,lp))],
+            ['  â€“ Local Workers â‰¥ RM5,000',   fn(s5lc),                  fn(s5lp),                  yoy_str(s5lc, s5lp)],
+            ['  â€“ Local â‰¥ RM5K Ratio',        fp(sd(s5lc,lc)*100),       fp(sd(s5lp,lp)*100),       yoy_str(sd(s5lc,lc), sd(s5lp,lp))],
         ]),
         ('PRODUCTIVITY & QUALITY INDICATORS', [
             ['CIPE (Capital Inv. / Worker)',   fmt_rm(sd(ic,ec)),         fmt_rm(sd(ip,ep)),         yoy_str(sd(ic,ec), sd(ip,ep))],
-            ['Export-Oriented (≥ 80%)',        fn((cur[CEXP]>=80).sum()), fn((prev[CEXP]>=80).sum()),yoy_str((cur[CEXP]>=80).sum(),(prev[CEXP]>=80).sum())],
+            ['Export-Oriented (â‰¥ 80%)',        fn((cur[CEXP]>=80).sum()), fn((prev[CEXP]>=80).sum()),yoy_str((cur[CEXP]>=80).sum(),(prev[CEXP]>=80).sum())],
             ['I4.0 Adopters',                  fn(cur['_i40'].sum()),     fn(prev['_i40'].sum()),    yoy_str(cur['_i40'].sum(), prev['_i40'].sum())],
         ]),
     ]
@@ -535,8 +535,8 @@ def sec_yoy(story, cur, prev, year, pl):
 
 def sec_qoq(story, cur, prev_qoq, year, pl, prev_pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'1B.  Quarter-on-Quarter Summary  —  {pl} {year}'))
-    _bar = sec_bar(f'1B.  QUARTER-ON-QUARTER SUMMARY  —  {pl} {year} vs {prev_pl} {year-1}')
+    story.append(TocEntry(0, f'1B.  Quarter-on-Quarter Summary  â€”  {pl} {year}'))
+    _bar = sec_bar(f'1B.  QUARTER-ON-QUARTER SUMMARY  â€”  {pl} {year} vs {prev_pl} {year-1}')
     _sp  = Spacer(1, 0.15*cm)
 
     ic = cur[CTRM].sum();   ip = prev_qoq[CTRM].sum()
@@ -561,30 +561,30 @@ def sec_qoq(story, cur, prev_qoq, year, pl, prev_pl):
     sections = [
         ('PROJECTS', [
             ['Total Projects Approved',        fn(len(cur)),              fn(len(prev_qoq)),              yoy_str(len(cur), len(prev_qoq))],
-            ['  – New (incl. Regularisation)', fn(nc),                    fn(np_),                        yoy_str(nc, np_)],
-            ['  – Diversification/Expansion',  fn(dvc),                   fn(dvp),                        yoy_str(dvc, dvp)],
+            ['  â€“ New (incl. Regularisation)', fn(nc),                    fn(np_),                        yoy_str(nc, np_)],
+            ['  â€“ Diversification/Expansion',  fn(dvc),                   fn(dvp),                        yoy_str(dvc, dvp)],
         ]),
         ('INVESTMENT', [
             ['Total Investment',               fmt_rm(ic),                fmt_rm(ip),                     yoy_str(ic, ip)],
-            ['  – Domestic Investment',        f"{fmt_rm(dc)} ({fp(sd(dc,ic)*100)})",    f"{fmt_rm(dp)} ({fp(sd(dp,ip)*100)})",    yoy_str(dc,  dp)],
-            ['  – Foreign Investment',         f"{fmt_rm(fc2)} ({fp(sd(fc2,ic)*100)})", f"{fmt_rm(fp2)} ({fp(sd(fp2,ip)*100)})", yoy_str(fc2, fp2)],
+            ['  â€“ Domestic Investment',        f"{fmt_rm(dc)} ({fp(sd(dc,ic)*100)})",    f"{fmt_rm(dp)} ({fp(sd(dp,ip)*100)})",    yoy_str(dc,  dp)],
+            ['  â€“ Foreign Investment',         f"{fmt_rm(fc2)} ({fp(sd(fc2,ic)*100)})", f"{fmt_rm(fp2)} ({fp(sd(fp2,ip)*100)})", yoy_str(fc2, fp2)],
         ]),
         ('EMPLOYMENT', [
             ['Total\nEmployment',               fn(ec),                                              fn(ep),                                              yoy_str(ec, ep)],
-            ['  – Local Employment',           f"{fn(lc)} ({fp(sd(lc,ec)*100)})",                   f"{fn(lp)} ({fp(sd(lp,ep)*100)})",                   yoy_str(lc, lp)],
-            ['  – Foreign Employment',         f"{fn(fc)} ({fp(sd(fc,ec)*100)})",                   f"{fn(fp_)} ({fp(sd(fp_,ep)*100)})",                 yoy_str(fc, fp_)],
+            ['  â€“ Local Employment',           f"{fn(lc)} ({fp(sd(lc,ec)*100)})",                   f"{fn(lp)} ({fp(sd(lp,ep)*100)})",                   yoy_str(lc, lp)],
+            ['  â€“ Foreign Employment',         f"{fn(fc)} ({fp(sd(fc,ec)*100)})",                   f"{fn(fp_)} ({fp(sd(fp_,ep)*100)})",                 yoy_str(fc, fp_)],
             ['MTS Workers',                    fn(mtc),                   fn(mtp),                        yoy_str(mtc, mtp)],
             ['MTS Ratio',                      fp(sd(mtc,ec)*100),        fp(sd(mtp,ep)*100),             yoy_str(sd(mtc,ec), sd(mtp,ep))],
-            ['Workers ≥ RM5,000',             fn(s5c),                   fn(s5p),                        yoy_str(s5c, s5p)],
-            ['≥ RM5K Ratio',                  fp(sd(s5c,ec)*100),        fp(sd(s5p,ep)*100),             yoy_str(sd(s5c,ec), sd(s5p,ep))],
-            ['  – Local MTS Workers',          fn(mtlc),                  fn(mtlp),                       yoy_str(mtlc, mtlp)],
-            ['  – Local MTS Ratio',            fp(sd(mtlc,lc)*100),       fp(sd(mtlp,lp)*100),            yoy_str(sd(mtlc,lc), sd(mtlp,lp))],
-            ['  – Local Workers ≥ RM5,000',   fn(s5lc),                  fn(s5lp),                       yoy_str(s5lc, s5lp)],
-            ['  – Local ≥ RM5K Ratio',        fp(sd(s5lc,lc)*100),       fp(sd(s5lp,lp)*100),            yoy_str(sd(s5lc,lc), sd(s5lp,lp))],
+            ['Workers â‰¥ RM5,000',             fn(s5c),                   fn(s5p),                        yoy_str(s5c, s5p)],
+            ['â‰¥ RM5K Ratio',                  fp(sd(s5c,ec)*100),        fp(sd(s5p,ep)*100),             yoy_str(sd(s5c,ec), sd(s5p,ep))],
+            ['  â€“ Local MTS Workers',          fn(mtlc),                  fn(mtlp),                       yoy_str(mtlc, mtlp)],
+            ['  â€“ Local MTS Ratio',            fp(sd(mtlc,lc)*100),       fp(sd(mtlp,lp)*100),            yoy_str(sd(mtlc,lc), sd(mtlp,lp))],
+            ['  â€“ Local Workers â‰¥ RM5,000',   fn(s5lc),                  fn(s5lp),                       yoy_str(s5lc, s5lp)],
+            ['  â€“ Local â‰¥ RM5K Ratio',        fp(sd(s5lc,lc)*100),       fp(sd(s5lp,lp)*100),            yoy_str(sd(s5lc,lc), sd(s5lp,lp))],
         ]),
         ('PRODUCTIVITY & QUALITY INDICATORS', [
             ['CIPE (Capital Inv. / Worker)',   fmt_rm(sd(ic,ec)),         fmt_rm(sd(ip,ep)),              yoy_str(sd(ic,ec), sd(ip,ep))],
-            ['Export-Oriented (≥ 80%)',        fn((cur[CEXP]>=80).sum()), fn((prev_qoq[CEXP]>=80).sum()),yoy_str((cur[CEXP]>=80).sum(),(prev_qoq[CEXP]>=80).sum())],
+            ['Export-Oriented (â‰¥ 80%)',        fn((cur[CEXP]>=80).sum()), fn((prev_qoq[CEXP]>=80).sum()),yoy_str((cur[CEXP]>=80).sum(),(prev_qoq[CEXP]>=80).sum())],
             ['I4.0 Adopters',                  fn(cur['_i40'].sum()),     fn(prev_qoq['_i40'].sum()),     yoy_str(cur['_i40'].sum(), prev_qoq['_i40'].sum())],
         ]),
     ]
@@ -656,7 +656,7 @@ def _subsector_groups(cur):
 
 def sec_overview(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'2.  Sector Overview  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'2.  Sector Overview  â€”  {pl} {year} vs {year-1}'))
     story.append(TocEntry(1, f'2A  Projects & Investment'))
     tc = len(cur); tp = len(prev)
     ic = cur[CTRM].sum(); ip = prev[CTRM].sum()
@@ -665,7 +665,7 @@ def sec_overview(story, cur, prev, year, pl):
     mtc  = cur[[CMGT,CPTT,CCKT]].sum().sum()
     s5c  = sum(cur[b[1]].sum() for b in SAL[2:])
 
-    story.append(sec_bar(f'2.  SECTOR OVERVIEW  —  {pl}  {year} vs {year-1}'))
+    story.append(sec_bar(f'2.  SECTOR OVERVIEW  â€”  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Total: {fn(tc)} projects  |  Employment: {fn(ec)}  |  Investment: RM {fb(ic)} bil  |  "
@@ -696,7 +696,7 @@ def sec_overview(story, cur, prev, year, pl):
     total_proj = g['proj'].sum() or 1
     total_inv  = g['inv'].sum()  or 1
 
-    # ── Table 2A: Projects & Investment ──────────────────────────────────────
+    # â”€â”€ Table 2A: Projects & Investment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(stat_line(f"2A   Projects & Investment"))
     story.append(Spacer(1, 0.1*cm))
 
@@ -721,10 +721,10 @@ def sec_overview(story, cur, prev, year, pl):
     cw_a = _cw(5.0, 2.5, 1.8, 1.5, 2.8, 2.4, 2.0, 2.0, 1.5)
     story.append(dtable(rows_a, cw_a))
 
-    # ── Table 2B: Employment Breakdown ───────────────────────────────────────
+    # â”€â”€ Table 2B: Employment Breakdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
     story.append(TocEntry(1, f'2B  Employment by Local / Foreign'))
-    story.append(sec_bar(f'2.  SECTOR OVERVIEW (CONT.)  —  Employment  |  {pl}  {year} vs {year-1}'))
+    story.append(sec_bar(f'2.  SECTOR OVERVIEW (CONT.)  â€”  Employment  |  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(f"2B   Employment by Local / Foreign"))
     story.append(Spacer(1, 0.1*cm))
@@ -758,10 +758,10 @@ def sec_overview(story, cur, prev, year, pl):
     cw_b = _cw(4.5, 2.0, 2.0, 1.5, 3.2, 3.2, 2.8, 2.8)
     story.append(dtable(rows_b, cw_b))
 
-    # ── Overview: New vs Expansion ────────────────────────────────────────────
+    # â”€â”€ Overview: New vs Expansion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
     story.append(Spacer(1, 0.3*cm))
-    story.append(stat_line("Overview — New vs Expansion Types"))
+    story.append(stat_line("Overview â€” New vs Expansion Types"))
     story.append(Spacer(1, 0.1*cm))
 
     _nv = cur[cur['_new']]
@@ -794,7 +794,7 @@ def sec_overview(story, cur, prev, year, pl):
     story.append(dtable(rows_ov, _cw(4.5, 2.0, 2.5, 2.5, 2.5, 1.6, 2.0, 1.3, 2.0, 1.3)))
     story.append(Spacer(1, 0.5*cm))
 
-    # ── Table 2C: New Projects by Sector ─────────────────────────────────────
+    # â”€â”€ Table 2C: New Projects by Sector â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(TocEntry(1, f'2C  New Projects by Sector'))
     story.append(stat_line(f"2C   New Projects by Sector"))
     story.append(Spacer(1, 0.1*cm))
@@ -833,7 +833,7 @@ def sec_overview(story, cur, prev, year, pl):
     cw_c = _cw(4.0, 1.8, 2.3, 2.5, 2.5, 1.6, 2.0, 1.3, 2.0, 1.3)
     story.append(dtable(rows_c, cw_c))
 
-    # ── Table 2D: Expansion Projects by Sector ────────────────────────────────
+    # â”€â”€ Table 2D: Expansion Projects by Sector â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
     story.append(TocEntry(1, f'2D  Expansion Projects by Sector'))
     story.append(Spacer(1, 0.3*cm))
@@ -872,13 +872,13 @@ def sec_overview(story, cur, prev, year, pl):
 
 def sec_export(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'4A.  Export Analysis  —  {pl} {year}'))
+    story.append(TocEntry(0, f'4A.  Export Analysis  â€”  {pl} {year}'))
     e80c = (cur[CEXP]>=80).sum()
     emp80= cur[cur[CEXP]>=80][CTE].sum()
-    story.append(sec_bar(f'4A.  EXPORT ANALYSIS  —  {pl} {year}'))
+    story.append(sec_bar(f'4A.  EXPORT ANALYSIS  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
-        f"High export (≥80%): {fn(e80c)} of {fn(len(cur))} ({fp(sd(e80c,len(cur))*100)})  |  "
+        f"High export (â‰¥80%): {fn(e80c)} of {fn(len(cur))} ({fp(sd(e80c,len(cur))*100)})  |  "
         f"Employment in high-export: {fn(emp80)}"
     ))
     story.append(Spacer(1, 0.15*cm))
@@ -893,10 +893,10 @@ def sec_export(story, cur, prev, year, pl):
     rows_d.sort(key=lambda x: x[2], reverse=True)
 
     hdr = ['Sector', 'Projects',
-           'Export\n≥80%', '% of Proj',
+           'Export\nâ‰¥80%', '% of Proj',
            'Export\n60-<80%', '% of Proj',
            'Export\n<60%', '% of Proj',
-           'Avg\nExport %', 'Employment in\nExp ≥80%']
+           'Avg\nExport %', 'Employment in\nExp â‰¥80%']
     rows = [hdr]
     ora  = []
     ri   = 1
@@ -922,10 +922,10 @@ def sec_export(story, cur, prev, year, pl):
 
 
 def sec_emp_category(story, cur, prev, year, pl):
-    """Total Employment by Category — Local / Foreign / Total, current vs previous year."""
+    """Total Employment by Category â€” Local / Foreign / Total, current vs previous year."""
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3.  Total Employment by Category  —  {pl} {year} vs {year-1}'))
-    story.append(sec_bar(f'3.  TOTAL EMPLOYMENT BY CATEGORY  —  {pl}  {year} vs {year-1}'))
+    story.append(TocEntry(0, f'3.  Total Employment by Category  â€”  {pl} {year} vs {year-1}'))
+    story.append(sec_bar(f'3.  TOTAL EMPLOYMENT BY CATEGORY  â€”  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
 
     te_c  = cur[CTE].sum();  te_p  = prev[CTE].sum()
@@ -948,7 +948,7 @@ def sec_emp_category(story, cur, prev, year, pl):
         ('Elementary Workers',                      CELML, CELMF, CELMT),
     ]
 
-    # ── 2-row header ──────────────────────────────────────────────────────────
+    # â”€â”€ 2-row header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     hdr1 = [
         Paragraph('Category', WRAPHDR_C),
         Paragraph(f'Q1 {year-1}', WRAPHDR_C), '', '',
@@ -1020,12 +1020,12 @@ def sec_emp_category(story, cur, prev, year, pl):
 
 def sec_mts(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3A.  MTS Breakdown  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'3A.  MTS Breakdown  â€”  {pl} {year} vs {year-1}'))
     mtc = cur[[CMGT,CPTT,CCKT]].sum().sum()
     mtp = prev[[CMGT,CPTT,CCKT]].sum().sum()
     ec  = cur[CTE].sum()
     ep  = prev[CTE].sum()
-    story.append(sec_bar(f'3A.  MTS BREAKDOWN  —  {pl}  {year} vs {year-1}'))
+    story.append(sec_bar(f'3A.  MTS BREAKDOWN  â€”  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"MTS {year}: {fn(mtc)} ({fp(sd(mtc,ec)*100)})  |  "
@@ -1063,15 +1063,15 @@ def sec_mts(story, cur, prev, year, pl):
 
 
 def sec_mts_local_foreign(story, cur, prev, year, pl):
-    # ── 4A: MTS Local ──────────────────────────────────────────────────────
+    # â”€â”€ 4A: MTS Local â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3B.  MTS Local Breakdown  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'3B.  MTS Local Breakdown  â€”  {pl} {year} vs {year-1}'))
     mtlc = cur[[CMGL, CPTL, CCKL]].sum().sum()
     mtlp = prev[[CMGL, CPTL, CCKL]].sum().sum()
     lec  = cur[CLE].sum()
     lep  = prev[CLE].sum()
 
-    story.append(sec_bar(f'3B.  MTS LOCAL BREAKDOWN  —  {pl}  {year} vs {year-1}'))
+    story.append(sec_bar(f'3B.  MTS LOCAL BREAKDOWN  â€”  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Local MTS {year}: {fn(mtlc)} ({fp(sd(mtlc,lec)*100)} of local emp)  |  "
@@ -1110,15 +1110,15 @@ def sec_mts_local_foreign(story, cur, prev, year, pl):
     cw = _cw(4.5, 1.5, 1.8, 1.8, 2.5, 2.0, 1.8, 1.8, 1.6)
     story.append(dtable(rows, cw, ora))
 
-    # ── 4B: MTS Foreign ────────────────────────────────────────────────────
+    # â”€â”€ 4B: MTS Foreign â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3C.  MTS Foreign Breakdown  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'3C.  MTS Foreign Breakdown  â€”  {pl} {year} vs {year-1}'))
     mtfc = cur[[CMGF, CPTF, CCKF]].sum().sum()
     mtfp = prev[[CMGF, CPTF, CCKF]].sum().sum()
     fec  = cur[CFE].sum()
     fep  = prev[CFE].sum()
 
-    story.append(sec_bar(f'3C.  MTS FOREIGN BREAKDOWN  —  {pl}  {year} vs {year-1}'))
+    story.append(sec_bar(f'3C.  MTS FOREIGN BREAKDOWN  â€”  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Foreign MTS {year}: {fn(mtfc)} ({fp(sd(mtfc,fec)*100)} of foreign emp)  |  "
@@ -1160,14 +1160,14 @@ def sec_mts_local_foreign(story, cur, prev, year, pl):
 
 def sec_salary(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3D.  Salary Breakdown  —  {pl} {year}'))
+    story.append(TocEntry(0, f'3D.  Salary Breakdown  â€”  {pl} {year}'))
     s5c = sum(cur[b[1]].sum() for b in SAL[2:])
     s5p = sum(prev[b[1]].sum() for b in SAL[2:])
     ec  = cur[CTE].sum()
-    story.append(sec_bar(f'3D.  SALARY BREAKDOWN  —  {pl} {year}'))
+    story.append(sec_bar(f'3D.  SALARY BREAKDOWN  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
-        f"Workers ≥RM5,000: {fn(s5c)} ({fp(sd(s5c,ec)*100)})  |  YoY: {yoy_str(s5c,s5p)}"
+        f"Workers â‰¥RM5,000: {fn(s5c)} ({fp(sd(s5c,ec)*100)})  |  YoY: {yoy_str(s5c,s5p)}"
     ))
     story.append(Spacer(1, 0.15*cm))
 
@@ -1181,8 +1181,8 @@ def sec_salary(story, cur, prev, year, pl):
 
     hdr = ['Sector','Projects','Total\nEmployment',
            '<RM3,000','<RM3K\n%','RM3K-5K','RM3K-5K\n%',
-           'RM5K-10K','RM5K-10K\n%','≥RM10K','≥RM10K\n%',
-           '≥RM5K\nTotal','≥RM5K\n%']
+           'RM5K-10K','RM5K-10K\n%','â‰¥RM10K','â‰¥RM10K\n%',
+           'â‰¥RM5K\nTotal','â‰¥RM5K\n%']
     rows = [hdr]
     for sub, proj, tot, bands, s5, _ in rows_d:
         rows.append([str(sub)[:32], fn(proj), fn(tot),
@@ -1206,13 +1206,13 @@ def sec_salary(story, cur, prev, year, pl):
 
 
 def sec_salary_local_foreign(story, cur, prev, year, pl):
-    # ── 5A: Salary Local ───────────────────────────────────────────────────
+    # â”€â”€ 5A: Salary Local â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3E.  Salary Breakdown (Local)  —  {pl} {year}'))
+    story.append(TocEntry(0, f'3E.  Salary Breakdown (Local)  â€”  {pl} {year}'))
     s5lc = sum(cur[b[2]].sum() for b in SAL[2:])
     lec  = cur[CLE].sum()
 
-    story.append(sec_bar(f'3E.  SALARY BREAKDOWN (LOCAL)  —  {pl} {year}'))
+    story.append(sec_bar(f'3E.  SALARY BREAKDOWN (LOCAL)  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Local Workers >=RM5,000: {fn(s5lc)} ({fp(sd(s5lc,lec)*100)} of local emp)"
@@ -1252,13 +1252,13 @@ def sec_salary_local_foreign(story, cur, prev, year, pl):
     cw = _cw(3.5, 1.4, 1.6, 1.6, 1.3, 1.6, 1.3, 1.6, 1.4, 1.6, 1.3, 1.6, 1.2)
     story.append(dtable(rows, cw))
 
-    # ── 5B: Salary Foreign ─────────────────────────────────────────────────
+    # â”€â”€ 5B: Salary Foreign â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(PageBreak())
-    story.append(TocEntry(0, f'3F.  Salary Breakdown (Foreign)  —  {pl} {year}'))
+    story.append(TocEntry(0, f'3F.  Salary Breakdown (Foreign)  â€”  {pl} {year}'))
     s5fc = sum(cur[b[3]].sum() for b in SAL[2:])
     fec  = cur[CFE].sum()
 
-    story.append(sec_bar(f'3F.  SALARY BREAKDOWN (FOREIGN)  —  {pl} {year}'))
+    story.append(sec_bar(f'3F.  SALARY BREAKDOWN (FOREIGN)  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Foreign Workers >=RM5,000: {fn(s5fc)} ({fp(sd(s5fc,fec)*100)} of foreign emp)"
@@ -1301,10 +1301,10 @@ def sec_salary_local_foreign(story, cur, prev, year, pl):
 
 def sec_cipe(story, cur, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'2E.  CIPE by Sector  —  {pl} {year}'))
+    story.append(TocEntry(0, f'2E.  CIPE by Sector  â€”  {pl} {year}'))
     ic = cur[CTRM].sum()
     ec = cur[CTE].sum()
-    story.append(sec_bar(f'2E.  CIPE BY SECTOR  —  {pl} {year}'))
+    story.append(sec_bar(f'2E.  CIPE BY SECTOR  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Overall CIPE: {fmt_rm(sd(ic,ec))}  |  Total Investment: {fmt_rm(ic)}  |  Total Employment: {fn(ec)}  |  "
@@ -1356,8 +1356,8 @@ def sec_cipe(story, cur, year, pl):
 
 def sec_rawmat(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'4B.  Raw Materials & Components  —  {pl} {year}'))
-    story.append(sec_bar(f'4B.  RAW MATERIALS & COMPONENTS CONTENT  —  {pl} {year}'))
+    story.append(TocEntry(0, f'4B.  Raw Materials & Components  â€”  {pl} {year}'))
+    story.append(sec_bar(f'4B.  RAW MATERIALS & COMPONENTS CONTENT  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Avg Local Content: {fp(cur[CRML].mean())}  |  Avg Import Content: {fp(cur[CRMI].mean())}"
@@ -1387,9 +1387,9 @@ def sec_rawmat(story, cur, prev, year, pl):
 
 def sec_i40(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'4C.  Industry 4.0 Adoption  —  {pl} {year}'))
+    story.append(TocEntry(0, f'4C.  Industry 4.0 Adoption  â€”  {pl} {year}'))
     i40c = cur['_i40'].sum()
-    story.append(sec_bar(f'4C.  INDUSTRY 4.0 ADOPTION  —  {pl} {year}'))
+    story.append(sec_bar(f'4C.  INDUSTRY 4.0 ADOPTION  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"I4.0 adopters: {fn(i40c)} of {fn(len(cur))} ({fp(sd(i40c,len(cur))*100)})  |  "
@@ -1427,8 +1427,8 @@ def sec_i40(story, cur, prev, year, pl):
 
 def sec_indicators(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'4D.  Project Indicators  —  {pl} {year}'))
-    story.append(sec_bar(f'4D.  PROJECT INDICATORS  —  {pl} {year}'))
+    story.append(TocEntry(0, f'4D.  Project Indicators  â€”  {pl} {year}'))
+    story.append(sec_bar(f'4D.  PROJECT INDICATORS  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
 
     inds = [(CNSS,'NSS'),(CEV,'EV'),(CGRNI,'Green'),(CHAL,'Halal'),
@@ -1456,13 +1456,13 @@ def sec_indicators(story, cur, prev, year, pl):
 
 def sec_green(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'4E.  Green Investment (GIS)  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'4E.  Green Investment (GIS)  â€”  {pl} {year} vs {year-1}'))
     gc   = cur[CGRNI].sum();  gp_  = prev[CGRNI].sum()
     tc   = len(cur);           tp   = len(prev)
     gi_c = cur[cur[CGRNI]][CTRM].sum()
     gi_p = prev[prev[CGRNI]][CTRM].sum()
 
-    story.append(sec_bar(f'4E.  GREEN INVESTMENT (GIS)  —  {pl}  {year} vs {year-1}'))
+    story.append(sec_bar(f'4E.  GREEN INVESTMENT (GIS)  â€”  {pl}  {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Green Projects {year}: {fn(gc)} ({fp(sd(gc,tc)*100)} of total)  |  "
@@ -1477,7 +1477,7 @@ def sec_green(story, cur, prev, year, pl):
     total_green  = int(gc);    total_greenp = int(gp_)
     total_gi     = gi_c;       total_gip    = gi_p
 
-    # ── 9A: By GIS Type ───────────────────────────────────────────────────────
+    # â”€â”€ 9A: By GIS Type â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(stat_line("4EA   Breakdown by Green Investment Strategy (GIS) Type"))
     story.append(Spacer(1, 0.1*cm))
 
@@ -1513,7 +1513,7 @@ def sec_green(story, cur, prev, year, pl):
 
     story.append(Spacer(1, 0.3*cm))
 
-    # ── 9B: By Sector ─────────────────────────────────────────────────────────
+    # â”€â”€ 9B: By Sector â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(stat_line("4EB   Green Projects by Sector"))
     story.append(Spacer(1, 0.1*cm))
 
@@ -1553,7 +1553,7 @@ def sec_green(story, cur, prev, year, pl):
 
     story.append(Spacer(1, 0.3*cm))
 
-    # ── 9C: By State ──────────────────────────────────────────────────────────
+    # â”€â”€ 9C: By State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     story.append(stat_line("9C   Green Projects by State"))
     story.append(Spacer(1, 0.1*cm))
 
@@ -1586,10 +1586,10 @@ def sec_green(story, cur, prev, year, pl):
 
 def sec_country(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'6.  Foreign Investment by Country  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'6.  Foreign Investment by Country  â€”  {pl} {year} vs {year-1}'))
     cur_f = cur[cur['_for']]; prev_f = prev[prev['_for']]
     fc = cur_f[CFRM].sum(); fp_ = prev_f[CFRM].sum()
-    story.append(sec_bar(f'6.  FOREIGN INVESTMENT BY ULTIMATE COUNTRY  —  {pl} {year} vs {year-1}'))
+    story.append(sec_bar(f'6.  FOREIGN INVESTMENT BY ULTIMATE COUNTRY  â€”  {pl} {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"Total Foreign Investment {year}: {fmt_rm(fc)}  |  "
@@ -1621,8 +1621,8 @@ def sec_country(story, cur, prev, year, pl):
 
 def sec_state(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'5A.  Distribution by State  —  {pl} {year} vs {year-1}'))
-    story.append(sec_bar(f'5A.  DISTRIBUTION BY STATE  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'5A.  Distribution by State  â€”  {pl} {year} vs {year-1}'))
+    story.append(sec_bar(f'5A.  DISTRIBUTION BY STATE  â€”  {pl} {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
 
     c = cur.groupby(CSTA,dropna=False).agg(proj=(CSTA,'count'),inv=(CTRM,'sum'),emp=(CTE,'sum')).reset_index()
@@ -1650,7 +1650,7 @@ def sec_state(story, cur, prev, year, pl):
 
 def sec_lds_state(story, cur, prev, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'5B.  LDS State  —  {pl} {year} vs {year-1}'))
+    story.append(TocEntry(0, f'5B.  LDS State  â€”  {pl} {year} vs {year-1}'))
     LDS_STATES = ['Perlis', 'Kedah', 'Terengganu', 'Kelantan', 'Sabah', 'Sarawak']
 
     cur_lds  = cur[cur[CSTA].isin(LDS_STATES)]
@@ -1658,7 +1658,7 @@ def sec_lds_state(story, cur, prev, year, pl):
     tc = len(cur_lds); ic = cur_lds[CTRM].sum(); ec = cur_lds[CTE].sum()
     tp = len(prev_lds); ip = prev_lds[CTRM].sum()
 
-    story.append(sec_bar(f'5B.  LDS STATE  —  {pl} {year} vs {year-1}'))
+    story.append(sec_bar(f'5B.  LDS STATE  â€”  {pl} {year} vs {year-1}'))
     story.append(Spacer(1, 0.15*cm))
     story.append(stat_line(
         f"LDS: {fn(tc)} projek  |  Pelaburan: {fmt_rm(ic)}  |  "
@@ -1729,12 +1729,12 @@ def sec_state_top3(story, cur, prev, year, pl):
         ec  = sc[CTE].sum()
         lec = sc[CLE].sum(); fec = sc[CFE].sum()
 
-        # ── Page: Projects, Investment, Employment by sector ──────────────
+        # â”€â”€ Page: Projects, Investment, Employment by sector â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         story.append(PageBreak())
         if rank == 1:
-            story.append(TocEntry(0, f'5C.  Top State Breakdown  —  {pl} {year} vs {year-1}'))
+            story.append(TocEntry(0, f'5C.  Top State Breakdown  â€”  {pl} {year} vs {year-1}'))
         story.append(sec_bar(
-            f'5C{chr(64+rank)}.  TOP STATE #{rank}: {state}  —  {pl} {year} vs {year-1}'
+            f'5C{chr(64+rank)}.  TOP STATE #{rank}: {state}  â€”  {pl} {year} vs {year-1}'
         ))
         story.append(Spacer(1, 0.15*cm))
         story.append(stat_line(
@@ -1823,8 +1823,8 @@ def sec_state_top3(story, cur, prev, year, pl):
 
 def sec_top5(story, cur, year, pl):
     story.append(PageBreak())
-    story.append(TocEntry(0, f'7.  Top 10 Projects by Investment  —  {pl} {year}'))
-    story.append(sec_bar(f'7.  TOP 10 PROJECTS BY INVESTMENT  —  {pl} {year}'))
+    story.append(TocEntry(0, f'7.  Top 10 Projects by Investment  â€”  {pl} {year}'))
+    story.append(sec_bar(f'7.  TOP 10 PROJECTS BY INVESTMENT  â€”  {pl} {year}'))
     story.append(Spacer(1, 0.15*cm))
 
     top10 = cur.nlargest(10, CTRM).copy()
@@ -1836,14 +1836,13 @@ def sec_top5(story, cur, year, pl):
     ))
     story.append(Spacer(1, 0.15*cm))
 
-    hdr = ['No.', 'Company Name', 'Date\nApproved', 'Sector', 'State', 'Ultimate\nCountry',
+    hdr = ['No.', 'Date\nApproved', 'Sector', 'State', 'Ultimate\nCountry',
            'Product / Activity', 'Total\nInvestment (RM bil)']
     rows = [hdr]
     for i, (_, r) in enumerate(top10.iterrows(), 1):
         date_str = r[CD].strftime('%d %b %Y') if pd.notna(r[CD]) else '-'
         rows.append([
             str(i),
-            str(r[CNAM]),
             date_str,
             str(r[CSCTR]),
             str(r[CSTA]),
@@ -1852,11 +1851,11 @@ def sec_top5(story, cur, year, pl):
             fb(r[CTRM]),
         ])
 
-    cw = _cw(0.7, 5.0, 2.0, 3.0, 2.0, 2.5, 7.5, 2.3)
+    cw = _cw(0.7, 2.0, 3.0, 2.0, 2.5, 12.5, 2.3)
     story.append(dtable(rows, cw))
 
 
-# ── MAIN ──────────────────────────────────────────────────────────────────────
+# â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 def main():
     print("=" * 60)
     print("  MIDA Manufacturing Investment Report Generator")
