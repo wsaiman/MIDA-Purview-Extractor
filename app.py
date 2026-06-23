@@ -228,7 +228,7 @@ with col_logo:
 with col_title:
     st.markdown('<div class="main-title">MIDA Manufacturing Investment Report Generator</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-title">Malaysia Investment Development Authority — Automated PDF Report</div>', unsafe_allow_html=True)
-
+    st.markdown('<div class="sub-title">Please Remove Company Name for Data Protection</div>', unsafe_allow_html=True)
 st.divider()
 
 # ── SIDEBAR ──────────────────────────────────────────────────────────────────
