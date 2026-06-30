@@ -1,0 +1,13 @@
+# Data files (sensitive — never commit)
+*.xlsx
+*.pkl
+*.pdf
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Misc
+inputs.txt
+.env
